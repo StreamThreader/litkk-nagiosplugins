@@ -37,21 +37,21 @@ fi
 
 STRATUM="$(ntpdc -nc sysinfo $TARGETHOST | grep stratum | awk '{printf $2}' | xargs echo)"
 
-if [ "$STRATUM" -lt "$WARNINVAL" ] || [ "$STRATUM" -eq "$WARNINVAL" ]
+if [ "$STRATUM" -lt "$WARNINVAL" ]
 then
 	STAT="OK"
 	echolot
 	exit 0
 fi
 
-if [ "$STRATUM" -gt "$WARNINVAL" ] && [ "$STRATUM" -lt "$CRITICVAL" ]
+if [ "$STRATUM" -ge "$WARNINVAL" ] && [ "$STRATUM" -lt "$CRITICVAL" ]
 then
 	STAT="Warning"
 	echolot
 	exit 1
 fi
 
-if [ "$STRATUM" -gt "$WARNINVAL" ] && [ "$STRATUM" -gt "$CRITICVAL" ]
+if [ "$STRATUM" -gt "$WARNINVAL" ] && [ "$STRATUM" -ge "$CRITICVAL" ]
 then
 	STAT="Critical"
 	echolot
