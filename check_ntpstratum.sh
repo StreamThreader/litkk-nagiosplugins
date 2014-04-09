@@ -18,7 +18,7 @@ then
 	WARNINVAL="6"
 fi
 
-if [ -z "CRITICVAL" ]
+if [ -z "$CRITICVAL" ]
 then
 	CRITICVAL="10"
 fi
